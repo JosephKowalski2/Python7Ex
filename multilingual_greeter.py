@@ -25,7 +25,7 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     Values are strings representing the name of a language
     :return: None
     """
-    language_input()
+    print('Please choose a language: ')
     for key, value in lang_options.items():
         print(f'{key}: {value}')
 
@@ -66,7 +66,7 @@ def get_name_input(name_prompt_options: Dict[int, str], lang_choice: int) -> str
     :param lang_choice: The language the user has chosen
     :return:
     """
-    pass  # remove pass statement and implement me
+    return name_prompt_options.get(lang_choice)
 
 
 def name_input(name_prompt: str) -> str:
@@ -76,7 +76,7 @@ def name_input(name_prompt: str) -> str:
     :param name_prompt: A string in the user's chosen language that asks them for their name
     :return: The user's response when asked for their name
     """
-    pass  # remove pass statement and implement me
+    return input(name_prompt)
 
 
 def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> None:
@@ -89,7 +89,7 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
-    pass  # remove pass statement and implement me
+    print(greetings_options[lang_choice], name)
 
 
 if __name__ == '__main__':
