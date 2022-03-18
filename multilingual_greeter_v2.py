@@ -105,15 +105,15 @@ def prompt():
 def admin():
     admin_options = input('1: Add Language, 2: Change Language\n')
     if admin_options == '1':
-        # get new language, language name, and language greeting from user
+
         add_language = input('Please enter the language you want to add')
         add_new_language_name = input('Please enter "What is your name?" in the new language')
         add_greeting = input('Enter "Hello" in the new language')
-        # add new values into new dictonary value
+
         new_language = {len(lang_dict) + 1: add_language}
         new_language_name = {len(lang_dict) + 1: add_new_language_name}
         new_greeting = {len(lang_dict) + 1: add_greeting}
-        # add new languages to existing dictonary
+
         lang_dict.update(new_language)
         name_prompt_dict.update(new_language_name)
         greetings_dict.update(new_greeting)
