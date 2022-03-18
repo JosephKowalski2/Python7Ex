@@ -92,18 +92,6 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     print(greetings_options[lang_choice], name)
 
 
-if __name__ == '__main__':
-    print_language_options(lang_dict)
-    chosen_lang = language_input()
-    while language_choice_is_valid(lang_dict, chosen_lang) is False:
-        print("Invalid selection. Try again.")
-        chosen_lang = language_input()
-
-    selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
-    chosen_name = name_input(selected_prompt)
-    greet(chosen_name, greetings_dict, chosen_lang)
-
-
 def prompt():
     mode_select = input("Please select 1 for admin mode or 2 for user mode\n")
     if mode_select == '1':
@@ -117,23 +105,38 @@ def prompt():
 def admin():
     admin_options = input('1: Add Language, 2: Change Language\n')
     if admin_options == '1':
-        #get new language, language name, and language greeting from user
+        # get new language, language name, and language greeting from user
         add_language = input('Please enter the language you want to add')
         add_new_language_name = input('Please enter "What is your name?" in the new language')
         add_greeting = input('Enter "Hello" in the new language')
-        #add new values into new dictonary value
+        # add new values into new dictonary value
         new_language = {len(lang_dict) + 1: add_language}
         new_language_name = {len(lang_dict) + 1: add_new_language_name}
         new_greeting = {len(lang_dict) + 1: add_greeting}
-        #add new languages to existing dictonary
+        # add new languages to existing dictonary
         lang_dict.update(new_language)
         name_prompt_dict.update(new_language_name)
         greetings_dict.update(new_greeting)
 
-    if admin_options == '2':
+    elif admin_options == '2':
         print(lang_dict)
-        updated_language_option = input('Please select language number to update greeting')
+        updated_language_option = int(input('Please select language number to update greeting\n'))
+        updated_greeting = input('Please enter the new greeting\n')
+        greetings_dict[updated_language_option] = updated_greeting
+        print('Here is the updated greeting')
+        print(greetings_dict[updated_language_option])
 
 
+def user():
+    print_language_options(lang_dict)
+    chosen_lang = language_input()
+    while language_choice_is_valid(lang_dict, chosen_lang) is False:
+        print("Invalid selection. Try again.")
+        chosen_lang = language_input()
+
+    selected_prompt = f"{get_name_input(name_prompt_dict, chosen_lang)} \n"
+    chosen_name = name_input(selected_prompt)
+    greet(chosen_name, greetings_dict, chosen_lang)
 
 
+prompt()
